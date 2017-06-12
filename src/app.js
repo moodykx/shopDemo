@@ -21,7 +21,7 @@ app.set('view engine', 'pug');
 app.use(express.static(path.join(path.dirname(__dirname), 'public')));
 
 app.get('/', (req, res) => {
-  res.render('index', { title: 'Hey', message: 'Hello there!' });
+  res.render('index', { title: 'hello moody', message: 'hey guys!' });
 });
 
 http.createServer(app).listen(app.get('port'), app.get('host'), () => {

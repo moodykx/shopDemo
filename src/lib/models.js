@@ -63,6 +63,40 @@ const FileSchema = new Schema({
 FileSchema.plugin(autoIncrPlugin, { model: 'File', field: 'file_id', startAt: 1 });
 
 export const File = mongoose.model('File', FileSchema);
+//商品表
+const ItemSchema = new Schema({
+  name:        String,
+  summary:     String,
+  extra:       Mixed,
+  created_at:  { type: Date, default: Date.now }
+})
+
+ItemSchema.plugin(autoIncrPlugin, { model: 'Item', field: 'item_id', startAt: 1 });
+
+export const Item = mongoose.model('Item', ItemSchema);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const Sequence = mongoose.model('Sequence', new Schema({
   name: { type: String, index: { unique: true } },
