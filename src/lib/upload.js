@@ -1,10 +1,8 @@
 import { File } from './models';
-import { FuncService } from './service';
 import { uploadPath, tempPath, func, processPath, dev } from '../../config';
 import fs from 'fs-extra';
 import { stat } from 'fs';
 import formidable from 'formidable';
-export const srv = new FuncService(func);
 
 export async function upload(file, bucket='images', ext='.jpg') {
   let fileObj;
@@ -31,9 +29,6 @@ async function doUpload(file, bucket='images', ext='.jpg') {
   await fs.move(file.path, fileName, {overwrite: true});
   await waitUpload(fileName);
   fileObj = await (new File({file_key: file.hash, file_bucket: bucket, extra: { ext }})).save();
-  if (!dev) {
-    await srv.run({ func: 'process-image', raw: processPath + '/' + file.hash + ext })
-  }
   return fileObj;
 }
 
